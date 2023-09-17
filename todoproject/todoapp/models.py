@@ -4,4 +4,4 @@ from django.db import models
 # Create your models here.
 
 class ToDoListItem(models.Model):
-    content = models.TextField()
+    content = models.CharField(max_length=100)

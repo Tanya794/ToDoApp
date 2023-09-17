@@ -7,23 +7,28 @@
 <body>
 
     <h1>My To Do List</h1>
-
+    <div>
     <form action="/addTodoItem/" method="post">
         {% csrf_token %}
-        <input type="text" name="content">
-        <input type="submit" value="Add Todo Item">
+        {{ form }}
+        <button type="submit">Add item</button>
     </form>
-
-    <ul>
+        </div>
+    <br>
+    <hr>
+    <br>
+    <div>
+    <form action="/deleteTodoItem/" method="post">
+        {% csrf_token %}
         {% for item in all_items %}
-            <li>{{ item.content }}
-                <form action="/deleteTodoItem/{{item.id}}/" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="Delete">
-                </form>
-            </li>
+            <label><input type="checkbox" name = "{{ item.id }}" value="{{ item.id }}"> {{ item.content }}</label><br>
         {% endfor %}
-    </ul>
+        <br>
+        <input type="submit" value="Delete">
+    </form>
+        </div>
+
+    <div>
 
 </body>
 </html>
